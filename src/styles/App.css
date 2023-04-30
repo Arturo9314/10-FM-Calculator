@@ -33,6 +33,7 @@
     border-radius: 10px;
     background-color: var(--key-bgcolor);
     box-shadow: 0 3px 0 var(--key-shadow);
+    cursor: pointer;
 }
 /* Hover */
 #clear{
@@ -107,6 +108,7 @@ svg {
 	fill: var(--toggle-keypad-bgcolor);
 	height: 20px;
 	width: 20px;
+    cursor: pointer;
 	margin: 0.05rem;
 }
 
@@ -116,28 +118,20 @@ input[type="radio"] {
 }
 
 input[type="radio"] +svg {
-	-webkit-transition: all 0.2s;
-	transition: all 0.2s;
-}
-input + svg{
-    cursor: pointer;
+	-webkit-transition: 0.2s ease-out;
+	transition: 0.2s ease-out;
 }
 
-input[class="one"]:hover + svg,
-input[class="one"]:checked + svg,
-input[class="one"]:focus + svg{
+
+input[class="one"]:checked + svg{
 	fill: var(--key-toogle-bgcolor);
 }
 
-input[class="two"]:hover + svg,
-input[class="two"]:checked + svg,
-input[class="two"]:focus + svg{
+input[class="two"]:checked + svg{
 	fill: var(--key-toogle-bgcolor);
 }
 
-input[class="three"]:hover + svg,
-input[class="three"]:checked + svg,
-input[class="three"]:focus + svg{
+input[class="three"]:checked + svg{
 	fill: var(--key-toogle-bgcolor);
 }
 
