@@ -1,20 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ReactComponent as Circle } from '../images/circle-solid.svg'
 import colortheme from '../styles/colors'
 
 export default function Display({display}) {
   
-  const [optionTheme, setOptionTheme]= useState('two')
+  let configColors = '';
+  if(localStorage.getItem('optionTheme') === null){
+    configColors = 'two';
+  }else{
+    configColors = localStorage.getItem('optionTheme');
+  }
+  const [optionTheme, setOptionTheme]= useState(configColors)
 
-  const handleChange = (event)=>{
-    setOptionTheme(event.target.value)
+  useEffect(()=>{
+    localStorage.setItem('optionTheme', optionTheme.toString());
+    setThemeColors(optionTheme)
+  },[optionTheme])
+
+  const setThemeColors = (optionTheme)=>{
     const root = document.documentElement;
     const colorEquals = document.getElementById('equals')
     const colorTitle = document.querySelector('h1')
     const colorOutput = document.querySelector('h2')
     const colorTxt = document.querySelector('h3')
     const colorTxtLabels = document.querySelectorAll('h4')
-    switch (event.target.value) {
+    switch (optionTheme) {
       case 'one':
         root.style.setProperty('--main-bgcolor', colortheme['one'].mainbgcolor)
         root.style.setProperty('--toggle-keypad-bgcolor', colortheme['one'].togglekeypadbgcolor)
@@ -72,6 +82,11 @@ export default function Display({display}) {
       default:
         break;
     }
+  }
+
+  const handleChange = (event)=>{
+    setOptionTheme(event.target.value)
+    setThemeColors(optionTheme)
   }
 
   return (
